@@ -62,5 +62,4 @@ with tf.Session() as sess:
     plt.plot(x_data, prediction_value, 'r-', lw=5)
     plt.show()
 
-x_data.shape
 
