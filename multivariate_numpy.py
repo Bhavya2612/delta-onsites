@@ -15,7 +15,7 @@ tf.disable_v2_behavior()  #placeholders don't work in tf.versions>2
 # [:,np.newaxis] is to transform one-dimensional data into two-dimensional data
 
 Y =[]
-x_data = np.random.randn(50,2)
+x_data = np.random.randn(50,2)          # n = 2
 for i in range(0,50):
     y = np.sin(x_data[i][0]+np.square(x_data[i][1]))
     Y.append(y)
@@ -36,7 +36,7 @@ b2 = np.zeros(shape=(1,1))
 def gradientDescent(x, y, theta1,theta2,b1,b2, alpha, m, numIterations):
     xTrans = x.transpose()
     for i in range(0, numIterations):
-        de = np.tanh(np.dot(x, theta1)+b1)
+        de = np.tanh(np.dot(x_data, theta1)+b1)
         final = np.tanh(np.dot(de, theta2)+b2)
 
         loss = (final - y) ** 2
@@ -49,9 +49,9 @@ def gradientDescent(x, y, theta1,theta2,b1,b2, alpha, m, numIterations):
     return theta2
 
 m = len(x_data)
-alpha = 0.1
+alpha = 0.01
 
-pred = gradientDescent(x_data,Y_data,W1,W2,b1,b2,alpha,m,100)
+pred = gradientDescent(x_data,Y,W1,W2,b1,b2,alpha,m,100)
 pre = np.mean(pred)
 
 prediction_y = np.multiply(x_data,pre)
